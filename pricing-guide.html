@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MarqVision v3 Pricing Plan Guide</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -80,6 +81,47 @@
   body.en [lang="ko"] { display: none !important; }
   body.en [lang="en"].inline { display: inline !important; }
   body.en [lang="ko"].inline { display: none !important; }
+
+  /* Auth gate */
+  #auth-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  #auth-gate .auth-logo {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  #auth-gate h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+  #auth-gate .auth-sub {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-top: -12px;
+  }
+  #auth-gate .auth-error {
+    font-size: 13px;
+    color: var(--red);
+    display: none;
+  }
+  body.authed #auth-gate { display: none; }
+  body:not(.authed) .header,
+  body:not(.authed) .lang-toggle,
+  body:not(.authed) .context-box,
+  body:not(.authed) .section,
+  body:not(.authed) > div:not(#auth-gate) { visibility: hidden; }
 
   /* Header */
   .header {
@@ -523,6 +565,28 @@
 </head>
 <body>
 
+<!-- Auth Gate -->
+<div id="auth-gate">
+  <div class="auth-logo">MarqVision</div>
+  <h2>v3 Pricing Plan Guide</h2>
+  <p class="auth-sub">@marqvision.com 계정으로 로그인해 주세요</p>
+  <div id="g_id_onload"
+    data-client_id="374061942885-09jhpvg7rekesc9jdt1j7poc83gvgqgc.apps.googleusercontent.com"
+    data-context="signin"
+    data-callback="handleGoogleSignIn"
+    data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+    data-type="standard"
+    data-size="large"
+    data-theme="outline"
+    data-text="sign_in_with"
+    data-shape="rectangular"
+    data-logo_alignment="left">
+  </div>
+  <p id="auth-error" class="auth-error"></p>
+</div>
+
 <div class="lang-toggle">
   <button id="btn-ko" class="active" onclick="setLang('ko')">한국어</button>
   <button id="btn-en" onclick="setLang('en')">English</button>
@@ -534,12 +598,12 @@
   <div lang="ko">
     <h1>v3 Pricing Plan Guide</h1>
     <div class="subtitle">v3 플랜의 과금 단위를 명확하게 안내하기 위한 문서입니다.</div>
-    <div class="date">v3 Pricing Plan (2026.01.09 시행, 2026.03.06 전면 적용) · <a href="https://docs.google.com/document/d/1IKhCxCxMfLm5MFYo-07X4o1kGoyZqDaJpPhMmdI33D8/edit?tab=t.0" target="_blank" style="color:var(--gray-400); text-decoration:underline;">원본 Google Doc</a></div>
+    <div class="date">v3 Pricing Plan (2026.01.09 시행, <a href="https://marqvision.slack.com/archives/CE8S24F0F/p1772522000099309" target="_blank" style="color:var(--gray-400); text-decoration:underline;">2026.03.06 전면 적용</a>) · <a href="https://docs.google.com/document/d/1IKhCxCxMfLm5MFYo-07X4o1kGoyZqDaJpPhMmdI33D8/edit?tab=t.0" target="_blank" style="color:var(--gray-400); text-decoration:underline;">원본 Google Doc</a></div>
   </div>
   <div lang="en">
     <h1>v3 Pricing Plan Guide</h1>
     <div class="subtitle">A clear reference for the v3 pricing plan's pricing units and structure.</div>
-    <div class="date">v3 Pricing Plan (effective Jan 9, fully enforced after Mar 6, 2026) · <a href="https://docs.google.com/document/d/1IKhCxCxMfLm5MFYo-07X4o1kGoyZqDaJpPhMmdI33D8/edit?tab=t.0" target="_blank" style="color:var(--gray-400); text-decoration:underline;">Original Google Doc</a></div>
+    <div class="date">v3 Pricing Plan (effective Jan 9, <a href="https://marqvision.slack.com/archives/CE8S24F0F/p1772522000099309" target="_blank" style="color:var(--gray-400); text-decoration:underline;">fully enforced after Mar 6, 2026</a>) · <a href="https://docs.google.com/document/d/1IKhCxCxMfLm5MFYo-07X4o1kGoyZqDaJpPhMmdI33D8/edit?tab=t.0" target="_blank" style="color:var(--gray-400); text-decoration:underline;">Original Google Doc</a></div>
   </div>
 </div>
 
@@ -1290,8 +1354,42 @@
 </div>
 
 <script>
+/* --- Auth --- */
+function decodeJwtPayload(token) {
+  const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+  return JSON.parse(atob(base64));
+}
+
+function handleGoogleSignIn(response) {
+  const payload = decodeJwtPayload(response.credential);
+  const email = payload.email || '';
+  if (!email.endsWith('@marqvision.com')) {
+    const err = document.getElementById('auth-error');
+    err.textContent = email + ' — @marqvision.com 계정만 접근할 수 있습니다.';
+    err.style.display = 'block';
+    return;
+  }
+  sessionStorage.setItem('marq_auth', JSON.stringify({ email: email, exp: payload.exp }));
+  document.body.classList.add('authed');
+}
+
+function checkAuth() {
+  try {
+    const stored = JSON.parse(sessionStorage.getItem('marq_auth'));
+    if (stored && stored.email && stored.email.endsWith('@marqvision.com')) {
+      if (stored.exp && Date.now() / 1000 < stored.exp) {
+        document.body.classList.add('authed');
+        return;
+      }
+    }
+  } catch (e) {}
+  sessionStorage.removeItem('marq_auth');
+}
+checkAuth();
+
+/* --- Language toggle --- */
 function setLang(lang) {
-  document.body.className = lang === 'en' ? 'en' : '';
+  document.body.classList.toggle('en', lang === 'en');
   document.getElementById('btn-ko').className = lang === 'ko' ? 'active' : '';
   document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
   const url = new URL(window.location);
