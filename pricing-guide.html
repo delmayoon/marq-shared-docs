@@ -568,8 +568,8 @@
 <!-- Auth Gate -->
 <div id="auth-gate">
   <div class="auth-logo">MarqVision</div>
-  <h2>v3 Pricing Plan Guide</h2>
-  <p class="auth-sub">@marqvision.com 계정으로 로그인해 주세요</p>
+  <h2>New Pricing Plan Guide</h2>
+  <p class="auth-sub">Sign in with your @marqvision.com account to continue.</p>
   <div id="g_id_onload"
     data-client_id="374061942885-09jhpvg7rekesc9jdt1j7poc83gvgqgc.apps.googleusercontent.com"
     data-context="signin"
@@ -1365,7 +1365,7 @@ function handleGoogleSignIn(response) {
   const email = payload.email || '';
   if (!email.endsWith('@marqvision.com')) {
     const err = document.getElementById('auth-error');
-    err.textContent = email + ' — @marqvision.com 계정만 접근할 수 있습니다.';
+    err.textContent = email + ' — Only @marqvision.com accounts are allowed.';
     err.style.display = 'block';
     return;
   }
