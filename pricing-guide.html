@@ -619,16 +619,293 @@
 </div>
 
 <!-- ============================================================ -->
-<!--  COVERAGE PER MODULE                                          -->
+<!--  OVERVIEW: MODULE × CHANNEL MATRIX + CHANNEL PRICING          -->
+<!-- ============================================================ -->
+<div class="part-divider">
+  <div lang="ko">
+    <h2>Overview</h2>
+    <p style="font-size:14px; margin-top:8px; color:var(--gray-700);">v3에서는 <b>Module</b>을 먼저 선택하고, 해당 Module에서 사용할 <b>Channel</b>을 추가합니다. Module과 Channel은 각각 과금됩니다.</p>
+  </div>
+  <div lang="en">
+    <h2>Overview</h2>
+    <p style="font-size:14px; margin-top:8px; color:var(--gray-700);">In v3, you first select a <b>Module</b>, then add the <b>Channels</b> you want under that module. Module and Channel are each billed separately.</p>
+  </div>
+</div>
+
+<!-- Section 1: Module × Channel Availability Matrix -->
+<div style="margin-bottom:40px;">
+  <h3 style="font-size:17px; margin-bottom:16px;">
+    <span lang="ko">모듈별 사용 가능 채널</span>
+    <span lang="en" class="inline">Channel Availability by Module</span>
+  </h3>
+  <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-size:13px; text-align:center;">
+      <thead>
+        <tr style="background:var(--gray-50); border-bottom:2px solid var(--gray-200);">
+          <th style="text-align:left; padding:10px 12px; font-weight:600; min-width:200px;">
+            <span lang="ko">채널</span><span lang="en" class="inline">Channel</span>
+          </th>
+          <th style="padding:10px 8px; font-weight:600; font-size:11px; line-height:1.3;">Essential<br>Basic<br><span style="color:var(--gray-400); font-weight:500;">$18K/yr</span></th>
+          <th style="padding:10px 8px; font-weight:600; font-size:11px; line-height:1.3;">Standard<br>Counterfeit<br><span style="color:var(--gray-400); font-weight:500;">$24K/yr</span></th>
+          <th style="padding:10px 8px; font-weight:600; font-size:11px; line-height:1.3;">Standard<br>Gray Market<br><span style="color:var(--gray-400); font-weight:500;">$24K/yr</span></th>
+          <th style="padding:10px 8px; font-weight:600; font-size:11px; line-height:1.3;">Piracy<br>Non-Gaming<br><span style="color:var(--gray-400); font-weight:500;">$24K/yr</span></th>
+          <th style="padding:10px 8px; font-weight:600; font-size:11px; line-height:1.3;">Piracy<br>Gaming<br><span style="color:var(--gray-400); font-weight:500;">$24K/yr</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Standard Marketplaces</td>
+          <td style="padding:8px;">⭕ <span style="font-size:11px; color:var(--gray-500);">*</span></td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Non-Standard Marketplaces</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Standard Social Media & Chat</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Non-Standard Social Media & Chat</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Domain Names</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Website Content</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;"><span style="color:var(--gray-400);" title="Gray Market 제품 단속 불가">△</span></td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Meta Ads</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Google Delisting (Search Engine)</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">App Stores</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="text-align:left; padding:8px 12px;">Live Streaming</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">⭕</td>
+          <td style="padding:8px;">⭕</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:12px; color:var(--gray-500); margin-top:8px;">
+    <span lang="ko">* Essential Basic의 Standard Marketplaces는 모듈비에 20 searches 포함 (추가 시 Standard Package 업그레이드 필요)<br>△ Gray Market 제품은 Website Content에서 단속 불가</span>
+    <span lang="en" class="inline">* Essential Basic Standard Marketplaces: 20 searches included in module fee (upgrade to Standard Package for more)<br>△ Gray market products cannot be enforced on Website Content</span>
+  </div>
+</div>
+
+<!-- Section 2: Channel Pricing Tables -->
+<div style="margin-bottom:40px;">
+  <h3 style="font-size:17px; margin-bottom:16px;">
+    <span lang="ko">채널 가격표</span>
+    <span lang="en" class="inline">Channel Pricing</span>
+  </h3>
+
+  <!-- Brand Protection Channel Pricing -->
+  <h4 style="font-size:14px; margin-bottom:12px; color:var(--gray-700);">
+    <span lang="ko">Brand Protection (Essential / Counterfeit / Gray Market)</span>
+    <span lang="en" class="inline">Brand Protection (Essential / Counterfeit / Gray Market)</span>
+  </h4>
+  <div style="overflow-x:auto; margin-bottom:28px;">
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead>
+        <tr style="background:var(--gray-50); border-bottom:2px solid var(--gray-200);">
+          <th style="text-align:left; padding:10px 12px; font-weight:600;">
+            <span lang="ko">채널</span><span lang="en" class="inline">Channel</span>
+          </th>
+          <th style="text-align:left; padding:10px 12px; font-weight:600;">
+            <span lang="ko">과금 단위</span><span lang="en" class="inline">Pricing Unit</span>
+          </th>
+          <th style="text-align:right; padding:10px 12px; font-weight:600;">
+            <span lang="ko">채널 가격</span><span lang="en" class="inline">Channel Price</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Standard Marketplaces</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-kp">Per Search (Keyword × Platform)</span></td>
+          <td style="padding:8px 12px; text-align:right;">
+            1–300: <span class="price">$500</span> · 301–600: <span class="price">$400</span> · 601–900: <span class="price">$300</span><br>
+            901–1,200: <span class="price">$250</span> · 1,200+: <span class="price">$200</span> per search
+          </td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Non-Standard Marketplaces</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-kp">Per Search (Keyword × Platform)</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$1,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Standard Social Media & Chat</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-bp">Per Brand</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$3,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Non-Standard Social Media & Chat</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-bp">Per Brand</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$6,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Domain Names</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-kp">Per Keyword × Frequency</span></td>
+          <td style="padding:8px 12px; text-align:right;">
+            <table style="border-collapse:collapse; font-size:13px; text-align:right; width:100%;">
+              <thead>
+                <tr style="border-bottom:1px solid var(--gray-200);">
+                  <th style="text-align:left; padding:4px 8px; font-weight:600;"><span lang="ko">키워드 수</span><span lang="en" class="inline">Keywords</span></th>
+                  <th style="padding:4px 8px; font-weight:600;">Daily</th>
+                  <th style="padding:4px 8px; font-weight:600;">Weekly</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="text-align:left; padding:3px 8px;">1–5</td><td style="padding:3px 8px;"><span class="price">$18,000</span></td><td style="padding:3px 8px;"><span class="price">$6,000</span></td></tr>
+                <tr><td style="text-align:left; padding:3px 8px;">6–10</td><td style="padding:3px 8px;"><span class="price">$15,000</span></td><td style="padding:3px 8px;"><span class="price">$5,000</span></td></tr>
+                <tr><td style="text-align:left; padding:3px 8px;">11–15</td><td style="padding:3px 8px;"><span class="price">$12,000</span></td><td style="padding:3px 8px;"><span class="price">$4,000</span></td></tr>
+                <tr><td style="text-align:left; padding:3px 8px;">16–20</td><td style="padding:3px 8px;"><span class="price">$9,000</span></td><td style="padding:3px 8px;"><span class="price">$3,000</span></td></tr>
+                <tr><td style="text-align:left; padding:3px 8px;">21+</td><td style="padding:3px 8px;"><span class="price">$6,000</span></td><td style="padding:3px 8px;"><span class="price">$2,000</span></td></tr>
+              </tbody>
+            </table>
+            <div style="font-size:12px; color:var(--gray-500); margin-top:4px;"><span lang="ko">* 키워드당 연간 가격</span><span lang="en" class="inline">* per keyword, per year</span></div>
+          </td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Website Content</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-bp">Per Brand</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$18,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Meta Ads</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-bp">Per Brand</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$12,000</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Piracy Channel Pricing -->
+  <h4 style="font-size:14px; margin-bottom:12px; color:var(--gray-700);">
+    <span lang="ko">Anti-Piracy</span>
+    <span lang="en" class="inline">Anti-Piracy</span>
+  </h4>
+  <div style="overflow-x:auto; margin-bottom:28px;">
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead>
+        <tr style="background:var(--gray-50); border-bottom:2px solid var(--gray-200);">
+          <th style="text-align:left; padding:10px 12px; font-weight:600;">
+            <span lang="ko">채널</span><span lang="en" class="inline">Channel</span>
+          </th>
+          <th style="text-align:left; padding:10px 12px; font-weight:600;">
+            <span lang="ko">과금 단위</span><span lang="en" class="inline">Pricing Unit</span>
+          </th>
+          <th style="text-align:right; padding:10px 12px; font-weight:600;">Non-Gaming</th>
+          <th style="text-align:right; padding:10px 12px; font-weight:600;">Gaming</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Google Delisting (Search Engine)</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-ap">Per Asset × Platform</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$300</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$1,200</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Standard Social Media & Chat</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-ap">Per Asset × Platform</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$300</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$1,200</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Non-Standard Social Media & Chat</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-ap">Per Asset × Platform</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$600</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$2,400</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">App Stores</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-ap">Per Asset × Platform</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$300</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$1,200</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Live Streaming</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-ap">Per Asset × Platform</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$3,000</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$3,000</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--gray-200);">
+          <td style="padding:8px 12px;">Website Content</td>
+          <td style="padding:8px 12px;"><span class="unit-badge unit-ap">Per Asset × Platform</span></td>
+          <td style="padding:8px 12px; text-align:right;"><span class="price">$18,000</span></td>
+          <td style="padding:8px 12px; text-align:right;">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:12px; color:var(--gray-500); margin-top:8px;">
+      <span lang="ko">* Asset = 단일 콘텐츠 타이틀 (모든 버전·시즌 포함)</span>
+      <span lang="en" class="inline">* Asset = a single content title including all versions and seasons</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  COVERAGE PER MODULE (Detail Cards)                           -->
 <!-- ============================================================ -->
 <div class="part-divider">
   <div lang="ko">
     <h2>Coverage per Module</h2>
-    <p style="font-size:14px; margin-top:8px; color:var(--gray-700);">v3에서는 <b>Module</b>을 먼저 선택하고, 해당 Module에서 사용할 <b>Channel</b>을 추가합니다. Module과 Channel은 각각 과금됩니다.</p>
+    <p style="font-size:14px; margin-top:8px; color:var(--gray-700);"><span lang="ko">각 모듈의 상세 정보</span><span lang="en" class="inline">Detailed information for each module</span></p>
   </div>
   <div lang="en">
     <h2>Coverage per Module</h2>
-    <p style="font-size:14px; margin-top:8px; color:var(--gray-700);">In v3, you first select a <b>Module</b>, then add the <b>Channels</b> you want under that module. Module and Channel are each billed separately.</p>
+    <p style="font-size:14px; margin-top:8px; color:var(--gray-700);">Detailed information for each module</p>
   </div>
 </div>
 
